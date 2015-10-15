@@ -23,9 +23,9 @@ void dbl_to_str(double d, char *s, int precision) {
 	intPart = (unsigned) d;
 	decPart = (unsigned) ((d - intPart + ROUND[precision]) * times);
 	// 小数部分是否需要向整数部分进位
-	if (decPart == TIMES[precision]) {
+	if (decPart == times) {
 		intPart++;
-		decPart -= TIMES[precision];
+		decPart -= times;
 	}
 	// printf("intPart is %u, decPart is %u\n", intPart, decPart); // debug
 
