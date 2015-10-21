@@ -60,6 +60,11 @@ public class WouldIWinTheGame {
 		return fruitNums;
 	}
 
+	/**
+	 * 经过再次认真思考，发现这题可以非常简单地计算（简单验证过但未严格论证）：
+	 * 如果水果种类为奇数个，我方肯定能获胜
+	 * 当水果种类为偶数个时，如果水果总个数为奇数则我方获胜，否则对方获胜
+	*/
 	private static boolean wouldWinTheGame(int[] fruitNums, int numOfTypes) {
 		// only 1 fruits, we would win with no doubt
 		if (numOfTypes == 1) {
