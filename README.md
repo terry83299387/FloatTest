@@ -29,4 +29,7 @@
 * `DoubleToString.c`用来将浮点数转化为字符串，最多支持10位整数和5位小数。问题来自：http://www.cnblogs.com/batsing/p/4876280.html。<br>
 详见程序内注释。
 
+* `WouldIWinTheGame.java`用来用程序判断是否能赢得游戏。问题来自：http://segmentfault.com/q/1010000003883784。<br>
+关于游戏的详细说明见程序内注释。
+
 
