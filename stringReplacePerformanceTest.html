@@ -8,146 +8,152 @@
   <h1 style="color:#ff0000;">Please open your debug tool (F12) and see results.</h1>
 
   <script type="text/javascript">
-  var performanceTest = function() {
-  	var CHARS = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789:;\'"{}[]()!@#$%^&*-_=+`~<>,./?\|\n\r\t '.split('');
-  	var NUM_SAMPLES = CHARS.length;
-  	var EMOJIS = [
-  		['/::)',		'微笑',		/\/::\)/g		],
-  		['/::~',		'伤心',		/\/::~/g		],
-  		['/::B',		'美女',		/\/::B/g		],
-  		['/::|',		'发呆',		/\/::\|/g		],
-  		['/:8-)',		'墨镜',		/\/:8-\)/g		],
-  		['/::<',		'哭',		/\/::</g		],
-  		['/::$',		'羞',		/\/::\$/g		],
-  		['/::X',		'哑',		/\/::X/g		],
-  		['/::Z',		'睡',		/\/::Z/g		],
-  		['/::’(',		'哭',		/\/::’\(/g		],
-  		['/::-|',		'囧',		/\/::-\|/g		],
-  		['/::@',		'怒',		/\/::@/g		],
-  		['/::P',		'调皮',		/\/::P/g		],
-  		['/::D',		'笑',		/\/::D/g		],
-  		['/::O',		'惊讶',		/\/::O/g		],
-  		['/::(',		'难过',		/\/::\(/g		],
-  		['/::+',		'酷',		/\/::\+/g		],
-  		['/:–b',		'汗',		/\/:–b/g		],
-  		['/::Q',		'抓狂',		/\/::Q/g		],
-  		['/::T',		'吐',		/\/::T/g		],
-  		['/:,@P',		'笑',		/\/:,@P/g		],
-  		['/:,@-D',		'快乐',		/\/:,@-D/g		],
-  		['/::d',		'奇',		/\/::d/g		],
-  		['/:,@o',		'傲',		/\/:,@o/g		],
-  		['/::g',		'饿',		/\/::g/g		],
-  		['/:|-)',		'累',		/\/:\|-\)/g		],
-  		['/::!',		'吓',		/\/::!/g		],
-  		['/::L',		'汗',		/\/::L/g		],
-  		['/::>',		'高兴',		/\/::>/g		],
-  		['/::,@',		'闲',		/\/::,@/g		],
-  		['/:,@f',		'努力',		/\/:,@f/g		],
-  		['/::-S',		'骂',		/\/::-S/g		],
-  		['/:?',			'疑问',		/\/:\?/g		],
-  		['/:,@x',		'秘密',		/\/:,@x/g		],
-  		['/:,@@',		'乱',		/\/:,@@/g		],
-  		['/::8',		'疯',		/\/::8/g		],
-  		['/:,@!',		'哀',		/\/:,@!/g		],
-  		['/:!!!',		'鬼',		/\/:!!!/g		],
-  		['/:xx',		'打击',		/\/:xx/g		],
-  		['/:bye',		'bye',		/\/:bye/g		],
-  		['/:wipe',		'汗',		/\/:wipe/g		],
-  		['/:dig',		'抠',		/\/:dig/g		],
-  		['/:handclap',	'鼓掌',		/\/:handclap/g	],
-  		['/:&-(',		'糟糕',		/\/:&-\(/g		],
-  		['/:B-)',		'恶搞',		/\/:B-\)/g		],
-  		['/:<@',		'什么',		/\/:<@/g		],
-  		['/:@>',		'什么',		/\/:@>/g		],
-  		['/::-O',		'累',		/\/::-O/g		],
-  		['/:>-|',		'看',		/\/:>-\|/g		],
-  		['/:P-(',		'难过',		/\/:P-\(/g		],
-  		['/::’|',		'难过',		/\/::’\|/g		],
-  		['/:X-)',		'坏',		/\/:X-\)/g		],
-  		['/::*',		'亲',		/\/::\*/g		],
-  		['/:@x',		'吓',		/\/:@x/g		],
-  		['/:8*',		'可怜',		/\/:8\*/g		],
-  		['/:pd',		'刀',		/\/:pd/g		],
-  		['/:<W>',		'水果',		/\/:<W>/g		],
-  		['/:beer',		'酒',		/\/:beer/g		],
-  		['/:basketb',	'篮球',		/\/:basketb/g	],
-  		['/:oo',		'乒乓',		/\/:oo/g		],
-  		['/:coffee',	'咖啡',		/\/:coffee/g	],
-  		['/:eat',		'美食',		/\/:eat/g		],
-  		['/:pig',		'动物',		/\/:pig/g		],
-  		['/:rose',		'鲜花',		/\/:rose/g		],
-  		['/:fade',		'枯',		/\/:fade/g		],
-  		['/:showlove',	'唇',		/\/:showlove/g	],
-  		['/:heart',		'爱',		/\/:heart/g		],
-  		['/:break',		'分手',		/\/:break/g		],
-  		['/:cake',		'生日',		/\/:cake/g		],
-  		['/:li',		'电',		/\/:li/g		]
-  	];
-  	var NUM_EMOJIS = EMOJIS.length;
-  	var EMOJI_RATIO = 20;
-  
-  	var rand = function (lower, upper) {
-  		return lower + Math.random() * (upper - lower) << 0;
-  	};
+;(function() {
+	var CHARS = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789:;\'"{}[]()!@#$%^&*-_=+`~<>,./?\|\n\r\t '.split('');
+	var NUM_SAMPLES = CHARS.length;
+	var EMOJIS = [
+		['/::)',		'微笑',		/\/::\)/g		],
+		['/::~',		'伤心',		/\/::~/g		],
+		['/::B',		'美女',		/\/::B/g		],
+		['/::|',		'发呆',		/\/::\|/g		],
+		['/:8-)',		'墨镜',		/\/:8-\)/g		],
+		['/::<',		'哭',		/\/::</g		],
+		['/::$',		'羞',		/\/::\$/g		],
+		['/::X',		'哑',		/\/::X/g		],
+		['/::Z',		'睡',		/\/::Z/g		],
+		['/::’(',		'哭',		/\/::’\(/g		],
+		['/::-|',		'囧',		/\/::-\|/g		],
+		['/::@',		'怒',		/\/::@/g		],
+		['/::P',		'调皮',		/\/::P/g		],
+		['/::D',		'笑',		/\/::D/g		],
+		['/::O',		'惊讶',		/\/::O/g		],
+		['/::(',		'难过',		/\/::\(/g		],
+		['/::+',		'酷',		/\/::\+/g		],
+		['/:–b',		'汗',		/\/:–b/g		],
+		['/::Q',		'抓狂',		/\/::Q/g		],
+		['/::T',		'吐',		/\/::T/g		],
+		['/:,@P',		'笑',		/\/:,@P/g		],
+		['/:,@-D',		'快乐',		/\/:,@-D/g		],
+		['/::d',		'奇',		/\/::d/g		],
+		['/:,@o',		'傲',		/\/:,@o/g		],
+		['/::g',		'饿',		/\/::g/g		],
+		['/:|-)',		'累',		/\/:\|-\)/g		],
+		['/::!',		'吓',		/\/::!/g		],
+		['/::L',		'汗',		/\/::L/g		],
+		['/::>',		'高兴',		/\/::>/g		],
+		['/::,@',		'闲',		/\/::,@/g		],
+		['/:,@f',		'努力',		/\/:,@f/g		],
+		['/::-S',		'骂',		/\/::-S/g		],
+		['/:?',			'疑问',		/\/:\?/g		],
+		['/:,@x',		'秘密',		/\/:,@x/g		],
+		['/:,@@',		'乱',		/\/:,@@/g		],
+		['/::8',		'疯',		/\/::8/g		],
+		['/:,@!',		'哀',		/\/:,@!/g		],
+		['/:!!!',		'鬼',		/\/:!!!/g		],
+		['/:xx',		'打击',		/\/:xx/g		],
+		['/:bye',		'bye',		/\/:bye/g		],
+		['/:wipe',		'汗',		/\/:wipe/g		],
+		['/:dig',		'抠',		/\/:dig/g		],
+		['/:handclap',	'鼓掌',		/\/:handclap/g	],
+		['/:&-(',		'糟糕',		/\/:&-\(/g		],
+		['/:B-)',		'恶搞',		/\/:B-\)/g		],
+		['/:<@',		'什么',		/\/:<@/g		],
+		['/:@>',		'什么',		/\/:@>/g		],
+		['/::-O',		'累',		/\/::-O/g		],
+		['/:>-|',		'看',		/\/:>-\|/g		],
+		['/:P-(',		'难过',		/\/:P-\(/g		],
+		['/::’|',		'难过',		/\/::’\|/g		],
+		['/:X-)',		'坏',		/\/:X-\)/g		],
+		['/::*',		'亲',		/\/::\*/g		],
+		['/:@x',		'吓',		/\/:@x/g		],
+		['/:8*',		'可怜',		/\/:8\*/g		],
+		['/:pd',		'刀',		/\/:pd/g		],
+		['/:<W>',		'水果',		/\/:<W>/g		],
+		['/:beer',		'酒',		/\/:beer/g		],
+		['/:basketb',	'篮球',		/\/:basketb/g	],
+		['/:oo',		'乒乓',		/\/:oo/g		],
+		['/:coffee',	'咖啡',		/\/:coffee/g	],
+		['/:eat',		'美食',		/\/:eat/g		],
+		['/:pig',		'动物',		/\/:pig/g		],
+		['/:rose',		'鲜花',		/\/:rose/g		],
+		['/:fade',		'枯',		/\/:fade/g		],
+		['/:showlove',	'唇',		/\/:showlove/g	],
+		['/:heart',		'爱',		/\/:heart/g		],
+		['/:break',		'分手',		/\/:break/g		],
+		['/:cake',		'生日',		/\/:cake/g		],
+		['/:li',		'电',		/\/:li/g		]
+	];
+	var NUM_EMOJIS = EMOJIS.length;
+	var EMOJI_RATIO = 20;
 
-  	// generate a random string for test
-  	var LEN = rand(5000, 100000); // 5,000 ~ 100,000
-  	var str = '';
-  	var ratio;
-  	var numEmoji = 0;
-  	for (var i = 0; i < LEN; i++) {
-  		ratio = rand(0, NUM_EMOJIS * EMOJI_RATIO);
-  		if (ratio < NUM_EMOJIS) {
-  			str += EMOJIS[ratio][0];
-  			numEmoji++;
-  		} else {
-  			str += CHARS[rand(0, NUM_SAMPLES)];
-  		}
-  	}
-  
-  	// replace using reg-expr
-  	var replaceByReg = function(s) {
-  		for (var i = 0; i < NUM_EMOJIS; i++) {
-  			s = s.replace(EMOJIS[i][2], EMOJIS[i][1]);
-  		}
-  		return s;
-  	};
+	var rand = function (lower, upper) {
+		return lower + Math.random() * (upper - lower) << 0;
+	};
 
-    // replace using indexOf
-  	var repalceByIndexOf = function(s) {
-  		var k, v, idx, pos;
-  		for (var i = 0; i < NUM_EMOJIS; i++) {
-  			k = EMOJIS[i][0];
-  			v = EMOJIS[i][1];
-  			pos = 0;
-  			while((idx = s.indexOf(k, pos)) > -1) {
-  				pos = idx + v.length;
-  				s = s.replace(k, v);
-  			}
-  		}
-  		return s;
-  	};
-  
-  	console.log('Test string length:', str.length);
-  	console.time('replaceByReg');
-  	var strReg = replaceByReg(str);
-  	console.timeEnd('replaceByReg');
-  
-  	console.time('repalceByIndexOf');
-  	var strIdxOf = repalceByIndexOf(str);
-  	console.timeEnd('repalceByIndexOf');
-  
-  	console.log('replaceByReg(str) == repalceByIndexOf(str):', strReg == strIdxOf);
-  };
-  
-  // test 10 times
-  for (var i = 1; i <= 10; i++) {
-  	console.log('---------- test ' + i + ' begin -------------');
-  	performanceTest();
-  	console.log('----------- test ' + i + ' end --------------');
-  	console.log('');
-  }
-  
+	// generate a random string for test
+	var genStr = function() {
+		var LEN = rand(5000, 100000); // 5,000 ~ 100,000
+		var str = '';
+		var ratio;
+		var numEmoji = 0;
+		for (var i = 0; i < LEN; i++) {
+			ratio = rand(0, NUM_EMOJIS * EMOJI_RATIO);
+			if (ratio < NUM_EMOJIS) {
+				str += EMOJIS[ratio][0];
+				numEmoji++;
+			} else {
+				str += CHARS[rand(0, NUM_SAMPLES)];
+			}
+		}
+		return str;
+	};
+
+	// replace using reg-expr
+	var replaceByReg = function(s) {
+		for (var i = 0; i < NUM_EMOJIS; i++) {
+			s = s.replace(EMOJIS[i][2], EMOJIS[i][1]);
+		}
+		return s;
+	};
+
+	// replace using indexOf
+	var repalceByIndexOf = function(s) {
+		var k, v, idx, pos;
+		for (var i = 0; i < NUM_EMOJIS; i++) {
+			k = EMOJIS[i][0];
+			v = EMOJIS[i][1];
+			pos = 0;
+			while((idx = s.indexOf(k, pos)) > -1) {
+				pos = idx + v.length;
+				s = s.replace(k, v);
+			}
+		}
+		return s;
+	};
+
+	var performanceTest = function() {
+		var str = genStr();
+		console.log('Test string length:', str.length);
+		console.time('replaceByReg');
+		var strReg = replaceByReg(str);
+		console.timeEnd('replaceByReg');
+
+		console.time('repalceByIndexOf');
+		var strIdxOf = repalceByIndexOf(str);
+		console.timeEnd('repalceByIndexOf');
+
+		console.log('replaceByReg(str) == repalceByIndexOf(str):', strReg == strIdxOf);
+	};
+
+	// test 10 times
+	for (var i = 1; i <= 10; i++) {
+		console.log('---------- test ' + i + ' begin -------------');
+		performanceTest();
+		console.log('----------- test ' + i + ' end --------------');
+		console.log('');
+	}
+})();
+
   </script>
 </body>
 </html>
