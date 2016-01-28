@@ -1,4 +1,3 @@
-
 // 题目来自：http://segmentfault.com/q/1010000004364292
 
 #include <stdio.h>
@@ -12,9 +11,9 @@ void swap(int *nums, int n1, int n2) {
 }
 
 // 在swapLastNums()函数中使用，不需要了解该函数的细节，看swapLastNums()函数中的注释即可
-int findSwapPos(int *nums, int size, int i, int needGreater) {
+int findSwapPos(int *nums, int size, int i, int startPos, int needGreater) {
 	int num = nums[i];
-	int n = 1;
+	int n = startPos;
 	while (n < i) {
 		if (needGreater > 0 && nums[n] > num && nums[n - 1] > num) {
 			return nums[n] > nums[n - 1] ? n - 1 : n;
@@ -46,15 +45,20 @@ void swapLastNums(int *nums, int size, int i, int needGreater) {
 	//
 	// 可以看到，最后的结果刚好全部满足排序规则。
 	//
-	int n;
+	int n = 1;
 	while (i < size) {
 		// needGreater用来指示是应该找更小的还是更大的
 		// 上面注释里面的例子是找更大的，但也可能发生需要在前面找出比当前元素更小的元素的情况
-		// 例如2,5,4,6,6,6
-		// 所以需要根据情况区别对待
-		n = findSwapPos(nums, size, i, needGreater);
+		// 例如：2,5,4,6,6,6
+		// 所以需要根据情况区别对待。
+		//
+		// 另外，在这里n的值会在循环间保持，并传给findSwapPos()函数。
+		// 这主要是为了优化效率，因为每次交换后，n位置及其前面的元素都已经搜索过了，不需要每次都重复搜索一遍。
+		// 看上面注释中的例子来体会这一点
+		n = findSwapPos(nums, size, i, n, needGreater);
 		swap(nums, i, n);
 		i += 2;
+		n += 2;
 	}
 }
 
@@ -154,10 +158,10 @@ void sort(int *nums, int size) {
 int NUMS[] = {5, 2, 2, 4, 1, 1, 1, 1};
 int SIZE = 8;
 
-void printResult(int *num) {
+void printResult() {
 	int i = 0;
 	while (i < SIZE) {
-		printf("%d, ", num[i]);
+		printf("%d, ", NUMS[i]);
 		i++;
 	}
 	printf("\n");
@@ -167,7 +171,7 @@ int main(int argc,char **argv) {
 
 	sort(NUMS, SIZE);
 
-	printResult(NUMS);
+	printResult();
 
 	return EXIT_SUCCESS;
 }
