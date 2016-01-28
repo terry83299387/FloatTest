@@ -11,9 +11,8 @@ void swap(int *nums, int n1, int n2) {
 }
 
 // 在swapLastNums()函数中使用，不需要了解该函数的细节，看swapLastNums()函数中的注释即可
-int findSwapPos(int *nums, int size, int i, int startPos, int needGreater) {
+int findSwapPos(int *nums, int size, int i, int n, int needGreater) {
 	int num = nums[i];
-	int n = startPos;
 	while (n < i) {
 		if ((needGreater > 0 && nums[n] > num)
 				|| (needGreater < 0 && nums[n] < num)) {
