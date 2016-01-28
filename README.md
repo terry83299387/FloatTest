@@ -32,4 +32,5 @@
 * `WouldIWinTheGame.java`用来用程序判断是否能赢得游戏。问题来自：http://segmentfault.com/q/1010000003883784。<br>
 关于游戏的详细说明见程序内注释。
 
+* `wiggle_sort.c`用来按小于、大于交替地对一个数组排序，问题来自：http://segmentfault.com/q/1010000004364292。<br>
 
