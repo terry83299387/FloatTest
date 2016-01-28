@@ -15,16 +15,16 @@ int findSwapPos(int *nums, int size, int i, int startPos, int needGreater) {
 	int num = nums[i];
 	int n = startPos;
 	while (n < i) {
-		if (needGreater > 0 && nums[n] > num && nums[n - 1] > num) {
-			return nums[n] > nums[n - 1] ? n - 1 : n;
-		} else if (needGreater < 0 && nums[n] < num && nums[n - 1] < num) {
-			return nums[n] > nums[n - 1] ? n : n - 1;
+		if ((needGreater > 0 && nums[n] > num)
+				|| (needGreater < 0 && nums[n] < num)) {
+			return n;
 		}
 
 		n += 2;
 	}
 
-	return n;
+	// 有解的话，一定能在上面的循环里找到一个符合条件的元素，所以这句代码一定不会执行
+	return -1; // would never be here
 }
 
 void swapLastNums(int *nums, int size, int i, int needGreater) {
@@ -32,8 +32,9 @@ void swapLastNums(int *nums, int size, int i, int needGreater) {
 	//
 	// 举个例子，假如现在数组顺序是：3,5,2,4,1,1,1,1，现在刚刚遍历到第二个1的位置，
 	// 此时程序发现后面剩下的元素全部是1，所以就要把这些1与前面的元素进行交换。
-	// 按照排序规则，第二个1的位置应该是一个较大的元素，所以我们从前面开始查找，找出连续两个比1大的元素，
-	// 当然，一下子就找到了，那就是开头的3和5两个元素，然后我们需要取较小的那个与当前位置的1交换，于是数组变成：
+	// 按照排序规则，第二个1的位置应该是一个较大的元素，所以我们从前面开始查找，
+	// 找出连续两个比1大的元素，然后将较小的那个与当前位置的1交换。
+	// 开头的两个元素3和5就满足要去，然后我们将较小的3与1交换，于是数组变成了：
 	//
 	//     [1],5,2,4,1,[3],1,1
 	//
@@ -45,7 +46,16 @@ void swapLastNums(int *nums, int size, int i, int needGreater) {
 	//
 	// 可以看到，最后的结果刚好全部满足排序规则。
 	//
-	int n = 1;
+	// 实际上我们不需要每次都比较2次，因为前半部分已经排好序的数组元素是满足n1<n2>n3<n4...这种关系的，
+	// 所以我们只需要将奇数位或偶数位上的元素与当前元素进行比较即可。这也是findSwapPos()函数实际采用的方法，可以少一些比较。
+	//
+	// 还是以上面的数组为例，我们可以发现数组3,5,2,4,1,1,1,1的前半部分已经排好序的元素中，
+	// 两两相邻元素之间较小的元素都在偶数位上（3和2），较大元素都在奇数位上（5和4）。
+	// 所以当需要找出“较大元素中较小的那个元素”时，我们只需要判断位于偶数位上的那些元素即可，反之亦然。
+
+	// 下面的变量n就是按这种思路进行初始化和递增的。
+	//
+	int n = (needGreater == 1 ? 0 : 1);
 	while (i < size) {
 		// needGreater用来指示是应该找更小的还是更大的
 		// 上面注释里面的例子是找更大的，但也可能发生需要在前面找出比当前元素更小的元素的情况
